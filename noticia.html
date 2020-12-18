@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>ASOREDES</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/animate.css">
+	
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+	
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+    .player-controls {
+      color: #FFF;
+    cursor: pointer;
+    display: block;
+    font-size: 40px;
+    margin: 20px 25px 20px 10px;
+    height: 1em;
+    position: relative;
+    text-decoration: none;
+    width: 1em;
+    -webkit-transition: transform 0.25s ease-in-out;
+    transition: transform 0.25s ease-in-out;
+}
+.player-controls .audio-label {
+  line-height: 1;
+  position: absolute;
+  right: 1.35em;
+  text-align: right;
+  text-transform: uppercase;
+  top: -0.4em;
+}
+.player-controls .audio-label span {
+  font-size: 18px;
+}
+.player-controls .audio-label span small {
+  display: block;
+  font-size: 0.83em;
+}
+.player-controls .play,
+.player-controls .pause {
+  display: block;
+  background: url('/images/play.svg') no-repeat 0 0;
+  background-size: 100% 100%;
+  height: 1em;
+  position: absolute;
+  width: 1em;
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+  z-index: 5;
+}
+.player-controls .play::before,
+.player-controls .pause::before,
+.player-controls .play::after,
+.player-controls .pause::after {
+  -webkit-border-radius: 1000px;
+  -moz-border-radius: 1000px;
+  border-radius: 1000px;
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1em;
+  right: 0;
+  top: 0;
+  width: 1em;
+  z-index: 0;
+}
+.player-controls .play::before {
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+.player-controls .pause {
+  background-image: url('/images/pause.svg');
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+.player-controls.playing .play {
+  opacity: 0;
+}
+.player-controls.playing .pause {
+  opacity: 1;
+}
+.player-controls.playing .pause::before {
+  -moz-animation: audio1 1.5s infinite ease-in-out;
+  -o-animation: audio1 1.5s infinite ease-in-out;
+  -webkit-animation: audio1 1.5s infinite ease-in-out;
+  animation: audio1 1.5s infinite ease-in-out;
+}
+.player-controls.playing .pause::after {
+  -moz-animation: audio2 2.2s infinite ease-in-out;
+  -o-animation: audio2 2.2s infinite ease-in-out;
+  -webkit-animation: audio2 2.2s infinite ease-in-out;
+  animation: audio2 2.2s infinite ease-in-out;
+}
+.player-controls:hover {
+  transform: scale(1.1);
+}
+.player-controls:hover .play::before {
+  box-shadow: 0 0 12px rgba(255, 238, 125, 0.8);
+}
+.animate-audio1 {
+  -moz-animation: audio1 1.5s infinite ease-in-out;
+  -o-animation: audio1 1.5s infinite ease-in-out;
+  -webkit-animation: audio1 1.5s infinite ease-in-out;
+  animation: audio1 1.5s infinite ease-in-out;
+}
+@keyframes audio1 {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0.4em rgba(255, 255, 255, 0.4);
+  }
+  25% {
+    box-shadow: 0 0 0 0.15em rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 0.55em rgba(255, 255, 255, 0.55);
+  }
+  75% {
+    box-shadow: 0 0 0 0.25em rgba(255, 255, 255, 0.25);
+  }
+}
+.animate-audio2 {
+  -moz-animation: audio2 2.2s infinite ease-in-out;
+  -o-animation: audio2 2.2s infinite ease-in-out;
+  -webkit-animation: audio2 2.2s infinite ease-in-out;
+  animation: audio2 2.2s infinite ease-in-out;
+}
+@keyframes audio2 {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0.25em rgba(255, 255, 255, 0.15);
+  }
+  25% {
+    box-shadow: 0 0 0 0.4em rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 0.15em rgba(255, 255, 255, 0.05);
+  }
+  75% {
+    box-shadow: 0 0 0 0.55em rgba(255, 255, 255, 0.45);
+  }
+}
+.social {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.social ul {
+  list-style: none;
+}
+
+.social ul li {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  background: #e59500;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.social ul li .fa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #fff;
+}
+
+.social ul li.facebook{
+  background: #3b5998;
+}
+
+.social ul li.twitter{
+  background: #00aced;
+}
+
+.social ul li.instagram{
+  background: #bc2a8d;
+}
+
+.social ul li.google{
+  background: #dd4b39;
+}
+
+.social ul li.whatsapp{
+  background: #4dc247;
+}
+
+.social ul li.facebook div.slider{
+  background: #627aac;
+}
+
+.social ul li.twitter div.slider{
+  background: #7fd5f6;
+}
+
+.social ul li.instagram div.slider{
+  background: #dd94c6;
+}
+
+.social ul li.envelope div.slider{
+  background: #eea59c;
+}
+
+.social ul li.whatsapp div.slider{
+  background: #82d47e;
+}
+
+.social .slider {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 41px;
+  width: 0px;
+  height: 30px;
+  background: #eebb5c;
+  border-radius: 3px;
+  transition: all 0.5s 0.3s ease;
+  text-align: center;
+}
+
+.social .slider a {
+  font-family: arial;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.social ul li:hover .slider {
+  width: 140px;
+  transition: all 0.5s ease;
+}
+
+.social ul li:hover .slider a {
+  opacity: 1;
+  transition: all 1s 0.2s ease;
+}
+
+.owl-prev {
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    margin-left: -20px;
+    display: block !important;
+    outline: none !important;
+}
+
+.owl-next {
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    right: -25px;
+    display: block !important;
+    border:0px solid black;
+    outline: none !important;
+
+}
+.owl-prev i, .owl-next i {color: #ccc;}
+
+.owl-prev i:before, .owl-next i:before {font-size: 50px;}
+.button {
+  display: inline-block;
+  position: relative;
+}
+.button.is-play {
+	margin: 10px 15px 0px 0;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+.button.is-play .button-outer-circle {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+.button.is-play .button-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.button.is-play .button-icon .triangle {
+  -webkit-animation: fadeIn 7s ease;
+          animation: fadeIn 7s ease;
+}
+.button.is-play .button-icon .path {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 0;
+  -webkit-animation: triangleStroke 3s;
+          animation: triangleStroke 3s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+}
+.has-scale-animation {
+  -webkit-animation: smallScale 3s infinite;
+          animation: smallScale 3s infinite;
+}
+.has-delay-short {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes triangleStroke {
+  from {
+    stroke-dashoffset: 90;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes triangleStroke {
+  from {
+    stroke-dashoffset: 90;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes smallScale {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes smallScale {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/*------------------
+  Footer Section
+---------------------*/
+
+.footer-section {
+	padding: 60px 70px 50px;
+}
+
+.footer-social{}
+
+.footer-social li {
+	list-style: none;
+    margin: 10px 0;
+}
+
+.footer-social li a {
+	color: #b8b8b8;
+    margin-right: 30px;
+    text-decoration: underline;
+}
+
+.footer-social li span {
+    font-size: 20px;
+    color: #000;
+}
+
+.footer-social li a span::before{
+	background: white;
+    padding: 10px;
+    margin: 0 10px;
+    width: 40px;
+    font-size: 20px;
+}
+
+.footer-social a {
+	color: #b8b8b8;
+	font-size: 14px;
+	margin-right: 30px;
+}
+
+.footer-menu {
+	padding-left: 0;
+}
+
+.footer-menu li a {
+	padding: 20px 15px;
+	color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-menu li:last-child a {
+	padding-right: 0;
+}
+
+.copyright {
+	margin-bottom: 0;
+	padding-top: 10px;
+	color: #000;
+}
+
+.footer-menu li{
+	display: inline;
+}
+
+	</style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ftco-navbar-dark" id="ftco-navbar">
+		<div class="container-fluid">
+		 <a class="navbar-brand" href="index.html"><img id="logo" src="/images/logo_asoredes.png"></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="oi oi-menu"></span> Menu
+		  </button>
+	   
+		  <div class="social-media">
+			<p class="mb-0 d-flex">
+				<a href="https://www.facebook.com/AsoRedes" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+				<a href="https://twitter.com/Asoredes" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+				<a href="https://www.instagram.com/antioquiaasoredes" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+				<a href="mailto:asoredes2@gmail.com" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-envelope"><i class="sr-only">E-mail</i></span></a>
+				<a href="https://wa.me/573016457273?text=Hola%20me%20gustaria%20pautar%20con%20ustedes" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-whatsapp"><i class="sr-only">E-mail</i></span></a>
+			</p>
+		</div>
+	   
+		 <div class="collapse navbar-collapse" id="ftco-nav">
+		   <ul class="navbar-nav  ml-auto">
+			 <li class="nav-item"><a href="/" class="nav-link">INICIO</a></li>
+			 <li class="nav-item"><a href="/historia.html" class="nav-link">SOBRE NOSOTROS </a></li>
+			 <!-- <li class="nav-item"><a href="#" class="nav-link">SOBRE NOSOTROS <span class="fa fa-chevron-down"></span></span></a></li> -->
+			 <li class="nav-item active"><a href="/emisoras.html" class="nav-link">EMISORAS ALIADAS</a></li>
+			 <!-- <li class="nav-item"><a href="#" class="nav-link">INFORMACIÓN LEGAL</a></li> -->
+			 <li class="nav-item"><img src="images/onair.png"></li>
+			 <li class="nav-item">
+				<a href="#" class="player-controls playing">
+					<span class="play"></span>
+					<span class="pause"></span>
+				 </a>
+			 </li>
+		   </ul>
+		 </div>
+	   </div>
+	   </nav>
+	   <!-- END nav -->
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/noticias/noticia.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-end justify-content-center">
+      <div class="col-md-9 ftco-animate text-center mb-5">
+        <h1 class="mb-2 bread">Curva del coronavirus en Colombia hoy, 6 de octubre: ¿Cuántos casos y muertes hay?</h1>
+        <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Inicio <i class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a href="#">Noticias </p> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-8 ftco-animate">
+      <h2 class="mb-3">El país volvió a tener una disminución en los casos activos. En el último reporte del Ministerio de Salud se confirmaron 7.650 nuevos positivos.</h2>
+      <div id="cuerpo_noticia" class="int-articulo">
+        <p>Hasta la fecha, Colombia suma 869.808 contagiados, que están distribuidos en los 32 departamentos del territorio nacional. <strong>En cuanto a pacientes recuperados, hay un total de&nbsp;<span>770.812</span> y&nbsp;<span>27.017</span> fallecidos.</strong> Por lo que&nbsp;<span>70.056</span> casos siguen activos.</p>
+        <p style=""><a title="Aislamiento selectivo en Colombia: qué se puede hacer y restricciones a partir del 1 de octubre" href="https://colombia.as.com/colombia/2020/09/30/actualidad/1601492534_531541.html" target="_blank">El país se encuentra en la fase de Aislamiento Selectivo, la cual fue extendida por el Gobierno nacional hasta el 31 de octubre</a>. Las autoridades siguen pidiendo mucho autocuidado por parte de los ciudadanos y cumplir con todos los protocolos de bioseguridad. <a title="Duque extiende la emergencia sanitaria hasta noviembre" href="https://colombia.as.com/colombia/2020/08/25/actualidad/1598316488_026823.html" target="_blank">El presidente Iván Duque declaró que la emergencia sanitaria irá hasta el 30 de noviembre en todo el territorio nacional.</a></p>
+        <h3>Distribución de casos de COVID-19 en Colombia</h3>
+        <p>La capital del país es la región más afectada por la pandemia. <strong>Hasta el momento registra&nbsp;279.249&nbsp;</strong><strong>casos positivos.</strong> En las últimas semanas el contagio disminuyó y las Unidades de Cuidados Intensivos bajaron su ocupación. <strong>Bogotá ya lleva varias semanas de reactivación económica</strong>. <a title="Pico y Placa en Bogotá: medidas y excepciones de movilidad para transitar en septiembre" href="https://colombia.as.com/colombia/2020/09/22/actualidad/1600800087_349226.html" target="_blank">La alcaldía también impuso de nuevo la medida del pico y placa, retirando de esta manera el pico y cédula.</a></p>
+        <p>Después de Bogotá, las zonas que siguen con mayor afectación por el COVID-19 son: <strong>Antioquia, Atlántico, Valle del Cauca, Cundinamarca y Santander.</strong> Por otro lado, Vichada es el departamento que menos casos presenta con 606. Así está la distribución de los contagios:</p>
+        <p style="">Bogotá: 279.249<br>
+        Antioquia: 121.792<br>
+        Atlántico: 68.288<br>
+        Valle del Cauca: 66.245<br>
+        Cundinamarca: 35.087<br>
+        Santander: 33.143<br>
+        Bolívar: 29.986<br>
+        Córdoba: 24.596<br>
+        Cesar: 21.343<br>
+        Nariño: 18.895<br>
+        Meta: 17.484<br>
+        Norte de Santander: 16.890<br>
+        Magdalena: 15.638<br>
+        Sucre: 14.272<br>
+        Tolima: 13.296<br>
+        Huila: 13.314<br>
+        Risaralda: 11.993<br>
+        Cauca: 10.371<br>
+        Caquetá: 9.109<br>
+        La Guajira: 8.464<br>
+        Boyacá: 8.358<br>
+        Caldas: 6.771<br>
+        Quindío: 4.521<br>
+        Chocó: 4.045<br>
+        Putumayo: 3.935<br>
+        Amazonas: 2.747<br>
+        Casanare: 2.746<br>
+        Arauca: 1.971<br>
+        San Andrés y Providencia: 1.542<br>
+        Guaviare: 1.019<br>
+        Guainía: 978<br>
+        Vaupés: 863<br>
+        Vichada: 606</p><div class="teads-adCall"></div><div class="teads-adCall"></div>
+        <h3>Aislamiento selectivo y cierre de fronteras en octubre</h3>
+        <p><a title="Así funcionará el aislamiento selectivo hasta 1 de noviembre" href="https://colombia.as.com/colombia/2020/09/30/actualidad/1601492534_531541.html" target="_blank">El presidente Iván Duque confirmó que la medida se extenderá durante el mes de octubre</a>, tal y como se venía ejecutando. Esto a su vez, mantiene el cierre de fronteras del país por un mes más, como informó Juan Francisco Espinosa, director de Migración Colombia: "<a title="¿Hasta cuándo estará cerrada la frontera en Colombia?" href="https://colombia.as.com/colombia/2020/10/01/actualidad/1601565647_187796.html" target="_blank">el primero de octubre no se abrirá el paso fronterizo por ninguno de los puntos del territorio nacional</a>".</p>
+        <p>A pesar de que el pico de contagios por coronavirus ha disminuido en Colombia, el mandatario aseguró que las reglas de prevención, protocolos de bioseguridad y medidas de distanciamiento social se mantendrán durante octubre, haciendo énfasis en evitar las aglomeraciones. Con este anuncio, <strong><a title="Aislamiento selectivo: en qué consiste y hasta cuándo se extiende" href="https://colombia.as.com/colombia/2020/09/29/actualidad/1601411771_628169.html" target="_blank">se amplía durante un mes más el Decreto 1168, el cual regula la fase de Aislamiento Selectivo</a></strong> y Distanciamiento Individual Responsable.</p>
+        <h3>Así avanza el regreso a clases</h3>
+        <p>El Ministro de Salud, Fernando Ruíz, <a title="Vuelta a clases en Colombia: protocolo y medidas definitivas del Minsalud" href="https://colombia.as.com/colombia/2020/10/01/actualidad/1601580137_653772.html" target="_blank">anunció los protocolos definitivos que regirán en las instituciones educativas del país</a> ante el regreso de los alumnos a las aulas. <strong>A través de la Resolución 1721 de 2020</strong>, este ministerio elaboró el protocolo de bioseguridad para el manejo y control del riesgo del coronavirus que se adoptará en <strong>jardines infantiles, colegios públicos y privados y centros de educación superior, como lo son las universidades.</strong></p>
+        <p>Según un estudio, <a title="¿Cuántos colegios pueden garantizar el lavado de manos?" href="https://colombia.as.com/colombia/2020/10/04/actualidad/1601768873_747139.html" target="_blank"><strong>el 55% de las instituciones educativas en Colombia no cuentan con suficiente agua y jabón</strong></a> para garantizar el lavado de manos de la comunidad educativa. La cifra asciende considerablemente al centrarse únicamente en colegios públicos, pues llega al 76%.</p>
+        <h3>¿Se puede contagiar en un vuelo?</h3>
+        <p>"Cuando se cumplen las normas de bioseguridad, se disminuye el riesgo de contagio y ahora con pilotos que se han hecho, <a title="Coronavirus Colombia: ¿me puedo contagiar en un vuelo?" href="https://colombia.as.com/colombia/2020/10/05/actualidad/1601856529_274578.html" target="_blank"><strong>se demuestra que la probabilidad es muy baja</strong></a>", señaló Carlos Álvarez, médico infectólogo y asesor del Gobierno Nacional para el COVID-19.</p>
+        <h3 class="p1">Todos contra el coronavirus</h3>
+        <p class="p1"><strong>Siguiendo estas recomendaciones prevenimos la propagación del <a href="https://as.com/tikitakas/2020/03/27/reportajes/1585332580_086339.html"><span class="s1">coronavirus (COVID-19)</span></a> en nuestro país:</strong> 1. Lávate las manos con frecuencia, 2. No saludes a la gente con besos o apretones de mano, 3. Si toses, cúbrete la boca con el codo flexionado o con un pañuelo desechable, 4. Evita tocarte los ojos, la nariz y la boca, 5. Si tienes fiebre o dificultad para respirar, busca atención médica, pero llama primero a la línea 123, 6. Sigue las indicaciones de las autoridades locales y nacionales.</p>
+        <p class="p1" style="">Así mismo, el Ministerio de Salud desarrolló una aplicación para el celular que permite seguir lo que sucede con el COVID-19 en el país. <strong><a href="https://colombia.as.com/colombia/2020/04/08/tikitakas/1586366486_321384.html"><span class="s1">CoronaApp está disponible de manera gratuita</span></a></strong> para descargar en dispositivos Android y iOS.</p><div class="teads-adCall"></div><div class="teads-adCall"></div>
+        <p class="p1"><strong>Y recuerda, ¡quédate en casa!</strong></p>
+        </div>
+      <div class="tag-widget post-tag-container mb-5 mt-5">
+        <div class="tagcloud">
+          <a href="#" class="tag-cloud-link">Covid</a>
+          <a href="#" class="tag-cloud-link">Colombia</a>
+          <a href="#" class="tag-cloud-link">Casos</a>
+          <a href="#" class="tag-cloud-link">Pandemia</a>
+        </div>
+      </div>
+
+      <div class="about-author d-flex p-4 bg-light">
+        <div class="bio mr-5">
+          <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
+        </div>
+        <div class="desc">
+          <h3>Asoredes</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+        </div>
+      </div>
+
+    </div> <!-- .col-md-8 -->
+
+    <div class="col-lg-4 sidebar ftco-animate">
+      <!-- <div class="sidebar-box">
+        <form action="#" class="search-form">
+          <div class="form-group">
+            <span class="icon icon-search"></span>
+            <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+          </div>
+        </form>
+      </div> -->
+      <div class="sidebar-box ftco-animate">
+       <h3>Categorías</h3>
+       <ul class="categories">
+        <li><a href="#">Categoria 001 <span>(6)</span></a></li>
+        <li><a href="#">Categoria 002 <span>(8)</span></a></li>
+        <li><a href="#">Categoria 003 <span>(2)</span></a></li>
+        <li><a href="#">Categoria 004 <span>(2)</span></a></li>
+        <li><a href="#">Categoria 005 <span>(2)</span></a></li>
+        <li><a href="#">Categoria 006 <span>(2)</span></a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-box ftco-animate">
+      <h3>Articulos Recientes</h3>
+      <div class="block-21 mb-4 d-flex">
+        <a class="blog-img mr-4" style="background-image: url(images/noticias/noticia001.jpg);"></a>
+        <div class="text">
+          <h3 class="heading"><a href="#">Noticia 001</a></h3>
+          <div class="meta">
+            <div><a href="#"><span class="icon-calendar"></span> Octubre 16, 2020</a></div>
+            <div><a href="#"><span class="icon-person"></span> Asoredes</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="block-21 mb-4 d-flex">
+        <a class="blog-img mr-4" style="background-image: url(images/noticias/noticia001.jpg);"></a>
+        <div class="text">
+          <h3 class="heading"><a href="#">Noticia 002</a></h3>
+          <div class="meta">
+            <div><a href="#"><span class="icon-calendar"></span> Octubre 16, 2020</a></div>
+            <div><a href="#"><span class="icon-person"></span> Asoredes</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="block-21 mb-4 d-flex">
+        <a class="blog-img mr-4" style="background-image: url(images/noticias/noticia001.jpg);"></a>
+        <div class="text">
+          <h3 class="heading"><a href="#">Noticia 003</a></h3>
+          <div class="meta">
+            <div><a href="#"><span class="icon-calendar"></span> Octubre 16, 2020</a></div>
+            <div><a href="#"><span class="icon-person"></span> Asoredes</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="sidebar-box ftco-animate">
+      <h3>Tag Cloud</h3>
+      <ul class="tagcloud m-0 p-0">
+        <a href="#" class="tag-cloud-link">Dish</a>
+        <a href="#" class="tag-cloud-link">Food</a>
+        <a href="#" class="tag-cloud-link">Lunch</a>
+        <a href="#" class="tag-cloud-link">Menu</a>
+        <a href="#" class="tag-cloud-link">Dessert</a>
+        <a href="#" class="tag-cloud-link">Drinks</a>
+        <a href="#" class="tag-cloud-link">Sweets</a>
+      </ul>
+    </div> -->
+
+    <div class="sidebar-box ftco-animate">
+     <h3>Archivos</h3>
+     <ul class="categories">
+       <li><a href="#">Enero 2020 <span>(20)</span></a></li>
+       <li><a href="#">Febrero 2020 <span>(30)</span></a></li>
+       <li><a href="#">Marzo 2020 <span>(20)</span></a></li>
+       <li><a href="#">Abril 2020 <span>(6)</span></a></li>
+       <li><a href="#">Mayo 2020 <span>(8)</span></a></li>
+     </ul>
+   </div>
+
+
+   <!-- <div class="sidebar-box ftco-animate">
+    <h3>Paragraph</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+  </div> -->
+</div><!-- END COL -->
+</div>
+</div>
+</section>
+
+<footer class="footer-section bg-secondary">
+  <div class="container">
+     <div class="row">
+      <div class="col-lg-3">
+       <div class="footer-logo">
+        <img src="/images/logo_banner.png" style="max-width: 100%;">
+       </div>
+       <div class="about-me text-center" style="color: white; margin-top: 10px;">
+        <span>CLL 52 N° 49 - 71 <br/> Oficina 601 Edificio Central</span><br/>
+        <span>3016457273</span>
+       </div>
+      </div>
+    <div class="col-lg-2">
+      <div class="social">
+        <ul>
+          <li class="ftco-animate facebook">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <div class="slider">
+            <a href="https://www.facebook.com/AsoRedes" target="_blank">facebook</a>
+            </div>
+          </li>
+          
+          <li class="ftco-animate twitter">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <div class="slider">
+              <a href="https://twitter.com/Asoredes" target="_blank">twitter</a>
+            </div>
+          </li>
+          
+          <li class="ftco-animate instagram">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+            <div class="slider">
+              <a href="https://www.instagram.com/antioquiaasoredes" target="_blank">instagram</a>
+            </div>
+          </li>
+          
+          <li class="ftco-animate email">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <div class="slider">
+              <a href="mailto:asoredes2@gmail.com" target="_blank">Email</a>
+            </div>
+          </li>
+          
+          <li class="ftco-animate whatsapp">
+            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            <div class="slider">
+              <a href="https://wa.me/573016457273?text=Hola%20me%20gustaria%20pautar%20con%20ustedes" target="_blank">whatsapp</a>
+            </div>
+          </li>
+          </ul>
+        </div>
+    </div>
+      <div class="col-lg-7 text-lg-right">
+        <ul class="footer-menu">
+					<li><a href="/">INICIO</a></li>
+					<li><a href="/historia.html">SOBRE NOSOTROS</a></li>
+					<li><a href="/emisoras.html">EMISORAS ALIADAS</a></li>
+					<!-- <li><a href="#">INFORMACIÓN LEGAL</a></li> -->
+				 </ul>
+       <p class="copyright">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados - ASOREDES
+       </p>
+      </div>
+     </div>
+  </div>
+ </footer>
+
+ <audio id="player" autoplay>
+  <source src="http://18.218.181.196:90/asoredesradio.mp3">
+ </audio>
+
+<!-- <audio autoplay="true" src="http://18.218.181.196:90/asoredesradio.mp3"> -->
+  
+
+  <!-- loader -->
+  <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div> -->
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+  <!-- <script src="js/google-map.js"></script> -->
+  <script src="js/main.js"></script>
+  <script>
+    var getaudio = $('#player')[0],
+         mouseovertimer,
+         audiostatus = 'off',
+         playerControls = ".player-controls";
+    
+    $(document).on('mouseenter', playerControls, function() {
+       
+       if (!mouseovertimer) {
+          
+          mouseovertimer = window.setTimeout(function() {
+             
+             mouseovertimer = null;
+             
+             if (!$(playerControls).hasClass("playing")) {
+                
+                getaudio.load();
+                getaudio.play();            
+                $(playerControls).addClass('playing');
+                return false;
+                
+             }
+             
+          }, 2500);
+          
+       }
+       
+    });
+    
+    $(document).on('mouseleave', playerControls, function() {
+       
+       if (mouseovertimer) {
+          
+          window.clearTimeout(mouseovertimer);
+          mouseovertimer = null;
+          
+       }
+       
+    });
+    
+    $(document).on('click touch', playerControls, function(e) {
+       
+       e.preventDefault();
+       
+       if (!$(playerControls).hasClass("playing")) {
+    
+          if (audiostatus == 'off') {
+             
+             $(playerControls).addClass('playing');
+             getaudio.load();
+             getaudio.play();
+             window.clearTimeout(mouseovertimer);
+             audiostatus = 'on';
+             return false;
+             
+          } else if (audiostatus == 'on') {
+             
+             $(playerControls).addClass('playing');
+             getaudio.play();
+             
+          }
+          
+       } else if ($(playerControls).hasClass("playing")) {
+          
+          getaudio.pause();
+          $(playerControls).removeClass('playing');
+          window.clearTimeout(mouseovertimer);
+          audiostatus = 'on';
+          
+       }
+       
+       return false;
+       
+    });
+    
+    $('#player').on('ended', function() {
+       
+       $(playerControls).removeClass('playing');
+       audiostatus = 'off';
+       
+    });
+        </script>
+
+</body>
+</html>

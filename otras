@@ -1,0 +1,105 @@
+<div class="col-md-4 ftco-animate">
+    <div class="blog-entry">
+        <a href="noticia06.html" class="block-20" style="background-image: url('images/noticias/noticia006.jpg');">
+        </a>
+        <div class="text px-4 pt-3 pb-4">
+            <!-- <div class="meta">
+                <div><a href="#">Octubre 16, 2020</a></div>
+            </div> -->
+            <h3 class="heading"><a href="noticia06.html">Todos contra Claro y Slim: los 10 operadores en Colombia se unen para atajarlos</a></h3>
+            <p class="clearfix">
+                <a href="noticia06.html" class="float-left read btn btn-primary">Leer más</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 ftco-animate">
+    <div class="blog-entry">
+        <a href="noticia07.html" class="block-20" style="background-image: url('images/noticias/noticia007.jpg');">
+        </a>
+        <div class="text px-4 pt-3 pb-4">
+            <!-- <div class="meta">
+                <div><a href="#">Octubre 16, 2020</a></div>
+            </div> -->
+            <h3 class="heading"><a href="noticia07.html">Día sin IVA: consulte la lista de productos que podrá adquirir el 21 de noviembre</a></h3>
+            <p class="clearfix">
+                <a href="noticia07.html" class="float-left read btn btn-primary">Leer más</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 ftco-animate">
+    <div class="blog-entry">
+        <a href="noticia08.html" class="block-20" style="background-image: url('images/noticias/noticia008.jpg');">
+        </a>
+        <div class="text px-4 pt-3 pb-4">
+            <!-- <div class="meta">
+                <div><a href="#">Octubre 16, 2020</a></div>
+            </div> -->
+            <h3 class="heading"><a href="noticia08.html">¿Qué piensan las empresas sobre el regreso a las oficinas?</a></h3>
+            <p class="clearfix">
+                <a href="noticia08.html" class="float-left read btn btn-primary">Leer más</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 ftco-animate">
+    <div class="blog-entry">
+        <a href="noticia09.html" class="block-20" style="background-image: url('images/noticias/noticia009.jpg');">
+        </a>
+        <div class="text px-4 pt-3 pb-4">
+            <!-- <div class="meta">
+                <div><a href="#">Octubre 16, 2020</a></div>
+            </div> -->
+            <h3 class="heading"><a href="noticia09.html">De desempleada a empresaria exitosa: angustias y éxitos de un negocio familiar</a></h3>
+            <p class="clearfix">
+                <a href="noticia09.html" class="float-left read btn btn-primary">Leer más</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 ftco-animate">
+    <div class="blog-entry">
+        <a href="noticia10.html" class="block-20" style="background-image: url('images/noticias/noticia010.jpg');">
+        </a>
+        <div class="text px-4 pt-3 pb-4">
+            <!-- <div class="meta">
+                <div><a href="#">Octubre 16, 2020</a></div>
+            </div> -->
+            <h3 class="heading"><a href="noticia10.html">Caso Uribe seguirá por sistema acusatorio y jueza definirá su libertad</a></h3>
+            <p class="clearfix">
+                <a href="noticia10.html" class="float-left read btn btn-primary">Leer más</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 ftco-animate">
+    <div class="blog-entry">
+        <a href="noticia11.html" class="block-20" style="background-image: url('images/noticias/noticia011.jpg');">
+        </a>
+        <div class="text px-4 pt-3 pb-4">
+            <!-- <div class="meta">
+                <div><a href="#">Octubre 16, 2020</a></div>
+            </div> -->
+            <h3 class="heading"><a href="noticia11.html">Curva del coronavirus en Colombia hoy, 6 de octubre: ¿Cuántos casos y muertes hay?</a></h3>
+            <p class="clearfix">
+                <a href="noticia11.html" class="float-left read btn btn-primary">Leer más</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 ftco-animate">
+    <div class="blog-entry">
+        <a href="noticia12.html" class="block-20" style="background-image: url('images/noticias/noticia012.jpg');">
+        </a>
+        <div class="text px-4 pt-3 pb-4">
+            <!-- <div class="meta">
+                <div><a href="#">Octubre 16, 2020</a></div>
+            </div> -->
+            <h3 class="heading"><a href="noticia12.html">James y Falcao llegan a Barranquilla para partido de la Selección Colombia en Eliminatoria</a></h3>
+            <p class="clearfix">
+                <a href="noticia12.html" class="float-left read btn btn-primary">Leer más</a>
+            </p>
+        </div>
+    </div>
+</div>

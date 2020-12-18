@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>ASOREDES</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/animate.css">
+	
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+	
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<style>
+    .player-controls {
+      color: #FFF;
+    cursor: pointer;
+    display: block;
+    font-size: 40px;
+    margin: 20px 25px 20px 10px;
+    height: 1em;
+    position: relative;
+    text-decoration: none;
+    width: 1em;
+    -webkit-transition: transform 0.25s ease-in-out;
+    transition: transform 0.25s ease-in-out;
+}
+.player-controls .audio-label {
+  line-height: 1;
+  position: absolute;
+  right: 1.35em;
+  text-align: right;
+  text-transform: uppercase;
+  top: -0.4em;
+}
+.player-controls .audio-label span {
+  font-size: 18px;
+}
+.player-controls .audio-label span small {
+  display: block;
+  font-size: 0.83em;
+}
+.player-controls .play,
+.player-controls .pause {
+  display: block;
+  background: url('/images/play.svg') no-repeat 0 0;
+  background-size: 100% 100%;
+  height: 1em;
+  position: absolute;
+  width: 1em;
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+  z-index: 5;
+}
+.player-controls .play::before,
+.player-controls .pause::before,
+.player-controls .play::after,
+.player-controls .pause::after {
+  -webkit-border-radius: 1000px;
+  -moz-border-radius: 1000px;
+  border-radius: 1000px;
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1em;
+  right: 0;
+  top: 0;
+  width: 1em;
+  z-index: 0;
+}
+.player-controls .play::before {
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+.player-controls .pause {
+  background-image: url('/images/pause.svg');
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+.player-controls.playing .play {
+  opacity: 0;
+}
+.player-controls.playing .pause {
+  opacity: 1;
+}
+.player-controls.playing .pause::before {
+  -moz-animation: audio1 1.5s infinite ease-in-out;
+  -o-animation: audio1 1.5s infinite ease-in-out;
+  -webkit-animation: audio1 1.5s infinite ease-in-out;
+  animation: audio1 1.5s infinite ease-in-out;
+}
+.player-controls.playing .pause::after {
+  -moz-animation: audio2 2.2s infinite ease-in-out;
+  -o-animation: audio2 2.2s infinite ease-in-out;
+  -webkit-animation: audio2 2.2s infinite ease-in-out;
+  animation: audio2 2.2s infinite ease-in-out;
+}
+.player-controls:hover {
+  transform: scale(1.1);
+}
+.player-controls:hover .play::before {
+  box-shadow: 0 0 12px rgba(255, 238, 125, 0.8);
+}
+.animate-audio1 {
+  -moz-animation: audio1 1.5s infinite ease-in-out;
+  -o-animation: audio1 1.5s infinite ease-in-out;
+  -webkit-animation: audio1 1.5s infinite ease-in-out;
+  animation: audio1 1.5s infinite ease-in-out;
+}
+@keyframes audio1 {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0.4em rgba(255, 255, 255, 0.4);
+  }
+  25% {
+    box-shadow: 0 0 0 0.15em rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 0.55em rgba(255, 255, 255, 0.55);
+  }
+  75% {
+    box-shadow: 0 0 0 0.25em rgba(255, 255, 255, 0.25);
+  }
+}
+.animate-audio2 {
+  -moz-animation: audio2 2.2s infinite ease-in-out;
+  -o-animation: audio2 2.2s infinite ease-in-out;
+  -webkit-animation: audio2 2.2s infinite ease-in-out;
+  animation: audio2 2.2s infinite ease-in-out;
+}
+@keyframes audio2 {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0.25em rgba(255, 255, 255, 0.15);
+  }
+  25% {
+    box-shadow: 0 0 0 0.4em rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 0.15em rgba(255, 255, 255, 0.05);
+  }
+  75% {
+    box-shadow: 0 0 0 0.55em rgba(255, 255, 255, 0.45);
+  }
+}
+.social {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.social ul {
+  list-style: none;
+}
+
+.social ul li {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  background: #e59500;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.social ul li .fa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #fff;
+}
+
+.social ul li.facebook{
+  background: #3b5998;
+}
+
+.social ul li.twitter{
+  background: #00aced;
+}
+
+.social ul li.instagram{
+  background: #bc2a8d;
+}
+
+.social ul li.google{
+  background: #dd4b39;
+}
+
+.social ul li.whatsapp{
+  background: #4dc247;
+}
+
+.social ul li.facebook div.slider{
+  background: #627aac;
+}
+
+.social ul li.twitter div.slider{
+  background: #7fd5f6;
+}
+
+.social ul li.instagram div.slider{
+  background: #dd94c6;
+}
+
+.social ul li.envelope div.slider{
+  background: #eea59c;
+}
+
+.social ul li.whatsapp div.slider{
+  background: #82d47e;
+}
+
+.social .slider {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 41px;
+  width: 0px;
+  height: 30px;
+  background: #eebb5c;
+  border-radius: 3px;
+  transition: all 0.5s 0.3s ease;
+  text-align: center;
+}
+
+.social .slider a {
+  font-family: arial;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.social ul li:hover .slider {
+  width: 140px;
+  transition: all 0.5s ease;
+}
+
+.social ul li:hover .slider a {
+  opacity: 1;
+  transition: all 1s 0.2s ease;
+}
+
+.owl-prev {
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    margin-left: -20px;
+    display: block !important;
+    outline: none !important;
+}
+
+.owl-next {
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    right: -25px;
+    display: block !important;
+    border:0px solid black;
+    outline: none !important;
+
+}
+.owl-prev i, .owl-next i {color: #ccc;}
+
+.owl-prev i:before, .owl-next i:before {font-size: 50px;}
+.button {
+  display: inline-block;
+  position: relative;
+}
+.button.is-play {
+	margin: 10px 15px 0px 0;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+.button.is-play .button-outer-circle {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+.button.is-play .button-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.button.is-play .button-icon .triangle {
+  -webkit-animation: fadeIn 7s ease;
+          animation: fadeIn 7s ease;
+}
+.button.is-play .button-icon .path {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 0;
+  -webkit-animation: triangleStroke 3s;
+          animation: triangleStroke 3s;
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+}
+.has-scale-animation {
+  -webkit-animation: smallScale 3s infinite;
+          animation: smallScale 3s infinite;
+}
+.has-delay-short {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes triangleStroke {
+  from {
+    stroke-dashoffset: 90;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes triangleStroke {
+  from {
+    stroke-dashoffset: 90;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes smallScale {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes smallScale {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/*------------------
+  Footer Section
+---------------------*/
+
+.footer-section {
+	padding: 60px 70px 50px;
+}
+
+.footer-social{}
+
+.footer-social li {
+	list-style: none;
+    margin: 10px 0;
+}
+
+.footer-social li a {
+	color: #b8b8b8;
+    margin-right: 30px;
+    text-decoration: underline;
+}
+
+.footer-social li span {
+    font-size: 20px;
+    color: #000;
+}
+
+.footer-social li a span::before{
+	background: white;
+    padding: 10px;
+    margin: 0 10px;
+    width: 40px;
+    font-size: 20px;
+}
+
+.footer-social a {
+	color: #b8b8b8;
+	font-size: 14px;
+	margin-right: 30px;
+}
+
+.footer-menu {
+	padding-left: 0;
+}
+
+.footer-menu li a {
+	padding: 20px 15px;
+	color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-menu li:last-child a {
+	padding-right: 0;
+}
+
+.copyright {
+	margin-bottom: 0;
+	padding-top: 10px;
+	color: #000;
+}
+
+.footer-menu li{
+	display: inline;
+}
+
+	</style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ftco-navbar-dark" id="ftco-navbar">
+		<div class="container-fluid">
+		 <a class="navbar-brand" href="index.html"><img id="logo" src="/images/logo_asoredes.png"></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="oi oi-menu"></span> Menu
+		  </button>
+	   
+		  <div class="social-media">
+			<p class="mb-0 d-flex">
+				<a href="https://www.facebook.com/AsoRedes" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+				<a href="https://twitter.com/Asoredes" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+				<a href="https://www.instagram.com/antioquiaasoredes" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+				<a href="mailto:asoredes2@gmail.com" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-envelope"><i class="sr-only">E-mail</i></span></a>
+				<a href="https://wa.me/573016457273?text=Hola%20me%20gustaria%20pautar%20con%20ustedes" target="_blank" class="d-flex align-items-center justify-content-center"><span class="fa fa-whatsapp"><i class="sr-only">E-mail</i></span></a>
+			</p>
+		</div>
+	   
+		 <div class="collapse navbar-collapse" id="ftco-nav">
+		   <ul class="navbar-nav  ml-auto">
+			 <li class="nav-item"><a href="/" class="nav-link">INICIO</a></li>
+			 <li class="nav-item"><a href="/historia.html" class="nav-link">SOBRE NOSOTROS </a></li>
+			 <!-- <li class="nav-item"><a href="#" class="nav-link">SOBRE NOSOTROS <span class="fa fa-chevron-down"></span></span></a></li> -->
+			 <li class="nav-item active"><a href="/emisoras.html" class="nav-link">EMISORAS ALIADAS</a></li>
+			 <!-- <li class="nav-item"><a href="#" class="nav-link">INFORMACIÓN LEGAL</a></li> -->
+			 <li class="nav-item"><img src="images/onair.png"></li>
+			 <li class="nav-item">
+				<a href="#" class="player-controls playing">
+					<span class="play"></span>
+					<span class="pause"></span>
+				 </a>
+			 </li>
+		   </ul>
+		 </div>
+	   </div>
+	   </nav>
+	   <!-- END nav -->
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/noticias/noticia009.jpg');" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-end justify-content-center">
+      <div class="col-md-9 ftco-animate text-center mb-5">
+        <h1 class="mb-2 bread">De desempleada a empresaria exitosa: angustias y éxitos de un negocio familiar</h1>
+        <!-- <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Inicio <i class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a href="#">Noticias </p> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section">
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-12 ftco-animate">
+      <h2>Después de laborar durante más de 18 años en el sector gubernamental y siendo diagnosticada como incapacitada para seguir laborando por un problema de salud ocupacional</h2>
+      <div id="cuerpo_noticia" class="int-articulo">
+        <p>Eugenia fue liquidada de la institución financiera donde laboró en el departamento de personal y, a sus 50 años obtuvo una jubilación mensual muy reducida por no haber completado los años de servicio básicos para obtener un salario mínimo de subsistencia, de esta forma pasó a engrosar las filas de los desocupados en un país donde no hay oportunidades para aquellos que ya han cumplido un periodo laboral y mucho menos por su edad.</p>
+        <p>Despu&eacute;s de varios meses sin un rumbo fijo y sin una actividad que le permitiera proyectarse con un ingreso real, su destino estaba destinado a cumplir las labores b&aacute;sicas de la casa y retirarse a ver pasar las horas y los d&iacute;as, adem&aacute;s de no contar con ning&uacute;n respaldo econ&oacute;mico que le permitiera emprender alguna nueva actividad.</p>
+        <p>Renuente a aceptar esa condici&oacute;n de vida, al haber perdido su estilo de vida laboral y sus amistades y ya no contando con una ocupaci&oacute;n que la mantuviese activa, busca la forma de emprender alg&uacute;n tipo de negocio que le genere ingresos, le mantenga ocupada y le d&eacute; la oportunidad de proyectarse como emprendedora y en alg&uacute;n momento ser empresaria.</p>
+        <div class="banner desktop">Pero,&nbsp;<strong>&iquest;C&oacute;mo lograr darle un giro a su vida sin ning&uacute;n respaldo econ&oacute;mico y ninguna experiencia empresarial?</strong></div>
+        <p>Eugenia comenta sus angustias y aspiraciones con su familia sobre su situaci&oacute;n y ofrecen ayudarle con un peque&ntilde;o garaje y bodega abandonado de 50 metros cuadrados de una casa en un barrio residencial. Es ah&iacute; donde le sugieren que monte alg&uacute;n negocio que le permita darle un cambio a su vida y tener una actividad que le permita tener ingresos para su familia.</p>
+        <p>Eugenia se llena de preguntas que tiene que abordar para poder buscar una soluci&oacute;n a su nueva etapa de vida. &iquest;Qu&eacute; negocio pongo en un barrio residencial y que no tiene ning&uacute;n movimiento comercial? &iquest;Con qu&eacute; capital puedo empezar un negocio sabiendo que no tengo ning&uacute;n respaldo econ&oacute;mico? &iquest;Qu&eacute; tipo de negocio puedo implementar y que pueda tener alguna posibilidad de &eacute;xito? M&aacute;s llena de ilusiones que de conocimiento decide emprender esta nueva aventura.</p>
+        <h2>UNA NUEVA ETAPA: EL EMPRENDIMIENTO</h2>
+        <p>&iexcl;Mi negocio ser&aacute; una cafeter&iacute;a&hellip;! &iexcl;y ser&aacute; la mejor cafeter&iacute;a del pa&iacute;s! &iexcl;Voy a vender tortillas de ma&iacute;z con caf&eacute;!</p>
+        <p>Manos a la obra, la primera etapa ser&aacute; limpiar y organizar mi &aacute;rea de trabajo. Despu&eacute;s de varios d&iacute;as de limpieza eliminaci&oacute;n de escombros y basura, se pod&iacute;a ver la realidad de su futura cafeter&iacute;a, los pisos no serv&iacute;an y se necesitaba acondicionar, adem&aacute;s se deb&iacute;a trabajar paredes, un ba&ntilde;o e infraestructura de agua y ventilaci&oacute;n.</p>
+        <p>&iquest;Y ahora? &iquest;Con qu&eacute; dinero puedo iniciar mi nueva cafeter&iacute;a? Viendo el entusiasmo y dedicaci&oacute;n que Eugenia impon&iacute;a a su nuevo proyecto, recibe la ayuda de un hermano que le dice tener unas acciones perdidas de una empresa y si ella es capaz de recuperar ese dinero puede tener su capital inicial, cuyo monto se espera a recuperar es de 3.000 d&oacute;lares. Inmediatamente emprende para localizar la empresa y tratar de negociar las acciones para recuperar el dinero. Actividad que le tom&oacute; un par de meses, pero finalmente ten&iacute;a su capital para iniciar su anhelado proyecto.</p>
+        <p>Capital que le permiti&oacute; iniciar con la remodelaci&oacute;n de pisos, un peque&ntilde;o asadero para preparar y exhibir sus productos, un peque&ntilde;o r&oacute;tulo de su nuevo local y una muy b&aacute;sica infraestructura de un ba&ntilde;o.</p>
+        <p>&iquest;Y las mesas? &iquest;y las sillas?&nbsp;&iquest;y la barra de atenci&oacute;n? &iquest;y la vajilla? &iquest;y la estufa? &iquest;y la refrigeradora? P&uacute;es&hellip; empezamos con la vajilla y las ollas de la casa y un peque&ntilde;o reverbero de dos hornillas. Recuerda Eugenia que su primer sart&eacute;n para fre&iacute;r empanadas era el de la casa con un di&aacute;metro de 20 cent&iacute;metros. Las cuatro primeras mesas fueron parte del capital de operaci&oacute;n y las 16 sillas compradas a cr&eacute;dito en una liquidaci&oacute;n.</p>
+        <h2>LA DESAZ&Oacute;N</h2>
+        <p>Ya iniciado mi proyecto de cafeter&iacute;a (<a href="https://www.latortillarestaurante.com/" rel="nofollow">La Tortilla Restaurante</a>), empecemos a producir para tener nuestros productos y poder lograr la apertura de la mejor cafeter&iacute;a del pa&iacute;s, que era l&oacute;gicamente, &iexcl;Mi propia cafeter&iacute;a!</p>
+        <p>Una vez abierto el primer d&iacute;a mi esfuerzo es hacer un poco de cada producto para que cualquier cliente que pida algo, disponer de producto para poderle vender. Pasan los 3 primeros d&iacute;as y no ingresa nadie. Alternativa: invitar a los amigos y excompa&ntilde;eros de trabajo para que no se pierda la poca producci&oacute;n y haya una sensaci&oacute;n de que ya ingresa gente. Los &uacute;nicos que aparecen son los familiares que viene a darle &aacute;nimo y desearle &eacute;xitos. Cero ingresos y todo va en cortes&iacute;as. Cuenta que la &uacute;nica vez que lleg&oacute; alguien a preguntar por algo, fue por un producto que no ten&iacute;a.</p>
+        <p>Ella en las noches se llevaba las masas de harina preparada y los productos en bandejas para su casa por cuanto no se tiene un refrigerador para la conservaci&oacute;n de los productos. A la ma&ntilde;ana siguiente nuevamente el viaje de regresos con los productos para la venta.</p>
+        <p>Eugenia cuenta que fue una de sus etapas m&aacute;s duras el trasladarse hasta su local para abrirlo siempre a la misma hora, sabiendo que nadie iba a llegar.</p>
+        <p>&iquest;Cu&aacute;nto cobrar? Un poco menos que la cafeter&iacute;a m&aacute;s popular de la ciudad.</p>
+        <h2>MI PRIMER CLIENTE</h2>
+        <p>Esa gran sensaci&oacute;n de ver llegar a mis dos primeros clientes que solicitan una empanada cada uno y un refresco. El poco aceite escasamente sirvi&oacute; para fre&iacute;r las empanadas y de mi botella de 2 litros de refresco, saque dos vasos para servir. Eso fue el &eacute;xito total. Ese d&iacute;a fue excepcional, al finalizar la tarde 2 nuevos clientes. Para el segundo grupo de clientes que pidi&oacute; un refresco, ya la botella hab&iacute;a perdido gran parte del gas. Motivo para empezar a hacer los correctivos de mis productos.</p>
+        <p>Al finalizar el mes de apertura, ya hab&iacute;a vendido el equivalente a dos d&oacute;lares. Era un &eacute;xito&hellip; Era feliz.</p>
+        <p>Al siguiente mes vend&iacute; 6 d&oacute;lares y el siguiente 8 y as&iacute; me mantuve durante ocho meses incrementando mis ventas mes a mes, pues al a&ntilde;o ya vend&iacute;a 100 d&oacute;lares al mes y al siguiente a&ntilde;o de operaciones vend&iacute;a sobre los 250 y dada la calidad de mis productos que yo misma elaboraba mis ventas al tercer a&ntilde;o ya llegaban cerca de los 500 d&oacute;lares mensuales.</p>
+        <p>Eugenia es diagnosticada con c&aacute;ncer de seno y es operada. Pero dado que su negocio todav&iacute;a requer&iacute;a de su presencia y contando con su perseverancia y tenacidad sin l&iacute;mites, ella logra que a los 10 d&iacute;as de operada ya se encuentre laborando y cuidando la producci&oacute;n y ventas de su negocio.</p>
+        <h2>EL DESARROLLO COMERCIAL</h2>
+        <p>A pesar de mi &eacute;xito que todos los meses ve&iacute;a crecer mi negocio en comparaci&oacute;n con el mes anterior, exist&iacute;a una pregunta que siempre manten&iacute;a. &iquest;Qu&eacute; debo hacer para lograr una mejor venta? Debe existir alg&uacute;n producto que sea lo suficientemente bueno o diferente para que la gente venga a mi local&hellip; Pero &iquest;cu&aacute;l&hellip;? &iexcl;Ya s&eacute;&hellip; har&eacute; la empanada m&aacute;s grande que hayan visto! En Ecuador es un plato t&iacute;pico la empanada de harina y que, al momento de fre&iacute;rse, por su cambio de temperatura dicha empanada se infla, entonces, esta ser&aacute; la empanada m&aacute;s grande jam&aacute;s vista.</p>
+        <p>Este tipo de empanada se volvi&oacute; muy conocida entre los clientes que se re&iacute;an y satisfac&iacute;an viendo la desproporci&oacute;n y ya la utilizaban para bromear y tomarse fotos. Fue tal el &eacute;xito que un profesor de la universidad env&iacute;a a sus alumnos de mercadeo y costos para que hagan el an&aacute;lisis de la empanada: &iquest;Cu&aacute;nto cuesta elaborarla?, &iquest;Cu&aacute;nto les cobrar&aacute;n? y &iquest;cu&aacute;l es su rentabilidad para el establecimiento?</p>
+        <p>Eugenia recuerda que un d&iacute;a s&aacute;bado que sali&oacute; muy temprano al mercado p&uacute;blico para hacer las compras de la semana, vio en el principal peri&oacute;dico de la ciudad en la secci&oacute;n de emprendimiento un reportaje de media p&aacute;gina dedicada a su empanada, reportaje que alguien hab&iacute;a hecho en secreto.</p>
+        <p>Con urgencia lleg&oacute; a su casa, se cambi&oacute; de ropa y como ella dice: &ldquo;Vol&oacute; a su establecimiento&rdquo; y cual su sorpresa al encontrarse con un grupo de personas que, con peri&oacute;dico en mano, esperaban se abriera el local para comprar las empanadas gigantes. Ese d&iacute;a comprendi&oacute; la importancia e influencia de la publicidad.</p>
+        <p>Ese mismo d&iacute;a llegaron varios periodistas de canales que buscaban noticias nuevas sobre emprendimiento y el canal Municipal de la ciudad le hizo un reportaje que despu&eacute;s se transmit&iacute;a en los buses p&uacute;blicos de c&oacute;mo es el &eacute;xito en emprendimientos.</p>
+        <p>Fue tal el &eacute;xito que Eugenia amplio su local de 4 mesas (tom&aacute;ndose el jard&iacute;n de la casa), a 18 mesas, ya con capacidad para atender hasta 70 personas. A los diez a&ntilde;os de estar en constante crecimiento, ya vend&iacute;a sobre los doscientos mil d&oacute;lares al a&ntilde;o.</p>
+        <p>Veinte a&ntilde;os despu&eacute;s con tres locales, y ventas que superan el mill&oacute;n de d&oacute;lares. Ella considera que hoy en d&iacute;a es la mejor cafeter&iacute;a t&iacute;pica del Ecuador.</p>
+        <p>Dispone de la &uacute;ltima tecnolog&iacute;a en producci&oacute;n y una marca reconocida a nivel nacional y genera un muy buen n&uacute;mero de plazas de empleo.</p>
+        <p>Eugenita Tapia ha participado en numerosas entrevistas radiales y televisivas incluyendo a la cadena internacional &ldquo;Discovery Channel&rdquo; y ha dado conferencias en las mejores universidades del pa&iacute;s donde ha sido ovacionada de pie, en calidad de emprendedora.</p>
+      </div>
+      <!-- <div class="tag-widget post-tag-container mb-5 mt-5">
+        <div class="tagcloud">
+          <a href="#" class="tag-cloud-link">Covid</a>
+          <a href="#" class="tag-cloud-link">Colombia</a>
+          <a href="#" class="tag-cloud-link">Casos</a>
+          <a href="#" class="tag-cloud-link">Pandemia</a>
+        </div>
+      </div> -->
+
+      <!-- <div class="about-author d-flex p-4 bg-light">
+        <div class="bio mr-5">
+          <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
+        </div>
+        <div class="desc">
+          <h3>Asoredes</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+        </div>
+      </div> -->
+
+    </div> <!-- .col-md-8 -->
+
+    <div class="col-lg-4 sidebar ftco-animate">
+      <!-- <div class="sidebar-box">
+        <form action="#" class="search-form">
+          <div class="form-group">
+            <span class="icon icon-search"></span>
+            <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+          </div>
+        </form>
+      </div> -->
+      <!-- <div class="sidebar-box ftco-animate">
+       <h3>Categorías</h3>
+       <ul class="categories">
+        <li><a href="#">Categoria 001 <span>(6)</span></a></li>
+        <li><a href="#">Categoria 002 <span>(8)</span></a></li>
+        <li><a href="#">Categoria 003 <span>(2)</span></a></li>
+        <li><a href="#">Categoria 004 <span>(2)</span></a></li>
+        <li><a href="#">Categoria 005 <span>(2)</span></a></li>
+        <li><a href="#">Categoria 006 <span>(2)</span></a></li>
+      </ul>
+    </div> -->
+
+    <!-- <div class="sidebar-box ftco-animate">
+      <h3>Articulos Recientes</h3>
+      <div class="block-21 mb-4 d-flex">
+        <a class="blog-img mr-4" style="background-image: url(images/noticias/noticia001.jpg);"></a>
+        <div class="text">
+          <h3 class="heading"><a href="#">Noticia 001</a></h3>
+          <div class="meta">
+            <div><a href="#"><span class="icon-calendar"></span> Octubre 16, 2020</a></div>
+            <div><a href="#"><span class="icon-person"></span> Asoredes</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="block-21 mb-4 d-flex">
+        <a class="blog-img mr-4" style="background-image: url(images/noticias/noticia001.jpg);"></a>
+        <div class="text">
+          <h3 class="heading"><a href="#">Noticia 002</a></h3>
+          <div class="meta">
+            <div><a href="#"><span class="icon-calendar"></span> Octubre 16, 2020</a></div>
+            <div><a href="#"><span class="icon-person"></span> Asoredes</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="block-21 mb-4 d-flex">
+        <a class="blog-img mr-4" style="background-image: url(images/noticias/noticia001.jpg);"></a>
+        <div class="text">
+          <h3 class="heading"><a href="#">Noticia 003</a></h3>
+          <div class="meta">
+            <div><a href="#"><span class="icon-calendar"></span> Octubre 16, 2020</a></div>
+            <div><a href="#"><span class="icon-person"></span> Asoredes</a></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- <div class="sidebar-box ftco-animate">
+      <h3>Tag Cloud</h3>
+      <ul class="tagcloud m-0 p-0">
+        <a href="#" class="tag-cloud-link">Dish</a>
+        <a href="#" class="tag-cloud-link">Food</a>
+        <a href="#" class="tag-cloud-link">Lunch</a>
+        <a href="#" class="tag-cloud-link">Menu</a>
+        <a href="#" class="tag-cloud-link">Dessert</a>
+        <a href="#" class="tag-cloud-link">Drinks</a>
+        <a href="#" class="tag-cloud-link">Sweets</a>
+      </ul>
+    </div> -->
+
+    <!-- <div class="sidebar-box ftco-animate">
+     <h3>Archivos</h3>
+     <ul class="categories">
+       <li><a href="#">Enero 2020 <span>(20)</span></a></li>
+       <li><a href="#">Febrero 2020 <span>(30)</span></a></li>
+       <li><a href="#">Marzo 2020 <span>(20)</span></a></li>
+       <li><a href="#">Abril 2020 <span>(6)</span></a></li>
+       <li><a href="#">Mayo 2020 <span>(8)</span></a></li>
+     </ul>
+   </div> -->
+
+
+   <!-- <div class="sidebar-box ftco-animate">
+    <h3>Paragraph</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+  </div> -->
+</div><!-- END COL -->
+</div>
+</div>
+</section>
+
+<footer class="footer-section bg-secondary">
+  <div class="container">
+     <div class="row">
+      <div class="col-lg-3">
+       <div class="footer-logo">
+        <img src="/images/logo_banner.png" style="max-width: 100%;">
+       </div>
+       <div class="about-me text-center" style="color: white; margin-top: 10px;">
+        <span>CLL 52 N° 49 - 71 <br/> Oficina 601 Edificio Central</span><br/>
+        <span>3016457273</span>
+       </div>
+      </div>
+    <div class="col-lg-2">
+      <div class="social">
+        <ul>
+          <li class="ftco-animate facebook">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+            <div class="slider">
+            <a href="https://www.facebook.com/AsoRedes" target="_blank">facebook</a>
+            </div>
+          </li>
+          
+          <li class="ftco-animate twitter">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <div class="slider">
+              <a href="https://twitter.com/Asoredes" target="_blank">twitter</a>
+            </div>
+          </li>
+          
+          <li class="ftco-animate instagram">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+            <div class="slider">
+              <a href="https://www.instagram.com/antioquiaasoredes" target="_blank">instagram</a>
+            </div>
+          </li>
+          
+          <li class="ftco-animate email">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <div class="slider">
+              <a href="mailto:asoredes2@gmail.com" target="_blank">Email</a>
+            </div>
+          </li>
+          
+          <li class="ftco-animate whatsapp">
+            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            <div class="slider">
+              <a href="https://wa.me/573016457273?text=Hola%20me%20gustaria%20pautar%20con%20ustedes" target="_blank">whatsapp</a>
+            </div>
+          </li>
+          </ul>
+        </div>
+    </div>
+      <div class="col-lg-7 text-lg-right">
+        <ul class="footer-menu">
+					<li><a href="/">INICIO</a></li>
+					<li><a href="/historia.html">SOBRE NOSOTROS</a></li>
+					<li><a href="/emisoras.html">EMISORAS ALIADAS</a></li>
+					<!-- <li><a href="#">INFORMACIÓN LEGAL</a></li> -->
+				 </ul>
+       <p class="copyright">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los derechos reservados - ASOREDES
+       </p>
+      </div>
+     </div>
+  </div>
+ </footer>
+
+ <audio id="player" autoplay>
+  <source src="http://18.218.181.196:90/asoredesradio.mp3">
+ </audio>
+
+<!-- <audio autoplay="true" src="http://18.218.181.196:90/asoredesradio.mp3"> -->
+  
+
+  <!-- loader -->
+  <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div> -->
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+  <!-- <script src="js/google-map.js"></script> -->
+  <script src="js/main.js"></script>
+  <script>
+    var getaudio = $('#player')[0],
+         mouseovertimer,
+         audiostatus = 'off',
+         playerControls = ".player-controls";
+    
+    $(document).on('mouseenter', playerControls, function() {
+       
+       if (!mouseovertimer) {
+          
+          mouseovertimer = window.setTimeout(function() {
+             
+             mouseovertimer = null;
+             
+             if (!$(playerControls).hasClass("playing")) {
+                
+                getaudio.load();
+                getaudio.play();            
+                $(playerControls).addClass('playing');
+                return false;
+                
+             }
+             
+          }, 2500);
+          
+       }
+       
+    });
+    
+    $(document).on('mouseleave', playerControls, function() {
+       
+       if (mouseovertimer) {
+          
+          window.clearTimeout(mouseovertimer);
+          mouseovertimer = null;
+          
+       }
+       
+    });
+    
+    $(document).on('click touch', playerControls, function(e) {
+       
+       e.preventDefault();
+       
+       if (!$(playerControls).hasClass("playing")) {
+    
+          if (audiostatus == 'off') {
+             
+             $(playerControls).addClass('playing');
+             getaudio.load();
+             getaudio.play();
+             window.clearTimeout(mouseovertimer);
+             audiostatus = 'on';
+             return false;
+             
+          } else if (audiostatus == 'on') {
+             
+             $(playerControls).addClass('playing');
+             getaudio.play();
+             
+          }
+          
+       } else if ($(playerControls).hasClass("playing")) {
+          
+          getaudio.pause();
+          $(playerControls).removeClass('playing');
+          window.clearTimeout(mouseovertimer);
+          audiostatus = 'on';
+          
+       }
+       
+       return false;
+       
+    });
+    
+    $('#player').on('ended', function() {
+       
+       $(playerControls).removeClass('playing');
+       audiostatus = 'off';
+       
+    });
+        </script>
+
+</body>
+</html>
